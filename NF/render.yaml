@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: life-fountain-church
+    runtime: docker
+    region: frankfurt
+    plan: free
+    numInstances: 1
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/status
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LFC_DATA_DIR
+        value: /tmp/life-fountain-data
+      - key: LFC_HTTPS
+        value: "1"
+      - key: LFC_STUDIO_PASSWORD
+        sync: false
